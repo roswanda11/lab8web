@@ -22,7 +22,7 @@
 
 ## Menjalankan MySQL Server
 
-Untuk menjalankan MySQL Server dari menu XAMPP Contol.
+Untuk menjalankan MySQL Server dari menu XAMPP Control.
 
 ![Screenshot (515)](https://github.com/roswanda11/lab8web/assets/115516632/e77897cc-5c66-45a4-900c-f1b4e0154dc8)
 

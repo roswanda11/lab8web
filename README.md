@@ -59,7 +59,8 @@ Dengan menggunakan tabel seseorang dapat dengan mudah mengetahui berbagai peruba
         ('Elektronik', 'HP Xiaomi Android', 'hp_xiaomi.jpg', 1000000, 1400000, 5),
         ('Elektronik', 'HP OPPO Android', 'hp_oppo.jpg', 1800000, 2300000, 5);
       
-      
+![Screenshot (521)](https://github.com/roswanda11/lab8web/assets/115516632/f2b55947-31d4-4182-927a-a3aeb5d97045)
+
 # Membuat Program CRUD
 
 Buat folder <b>lab8_php_database</b> pada root directory web server (d:\xampp\htdocs)
@@ -176,73 +177,121 @@ dengan mengakses URL: http://localhost/lab8_php_database
       }
       table tr:nth-child(even){
           background:#FFF;
-      }      
+      }
+       
+![image](https://github.com/roswanda11/lab8web/assets/115516632/4efd794b-d2df-4607-9d9f-094057af1a63)
 
 ### 4. Menambah Data <i>(Create)</i>
 
 - Buat file baru dengan nama ```tambah.php```
 
-- Dengan penggunaan ```include_once()``` atau ```require_once()``` maka berarti penyisipan hanya di panggil sekali saja.
+Dengan penggunaan ```include_once()``` atau ```require_once()``` maka berarti penyisipan hanya di panggil sekali saja.
     
-- ```error_reporting(E_ALL);``` // memunculkan report error
+```error_reporting(E_ALL);``` // memunculkan report error
 
-      
       <?php
-      include("koneksi.php");
+      error_reporting(E_ALL);
+      include_once 'koneksi.php';
       
-      $sql = 'SELECT * FROM data_barang';
-      $result = mysqli_query($conn, $sql);
-      
+      if (isset($_POST['submit']))
+      {
+          $nama = $_POST['nama'];
+          $kategori = $_POST['kategori'];
+          $harga_jual = $_POST['harga_jual'];
+          $harga_beli = $_POST['harga_beli'];
+          $stok = $_POST['stok'];
+          $file_gambar = $_FILES['file_gambar'];
+          $gambar = null;
+          if ($file_gambar['error'] == 0)
+          {
+              $filename = str_replace(' ', '_',$file_gambar['name']);
+              $destination = dirname(__FILE__) .'/gambar/' . $filename;
+              if(move_uploaded_file($file_gambar['tmp_name'], $destination))
+              {
+                  $gambar = 'gambar/' . $filename;;
+              }
+          }
+          $sql = 'INSERT INTO data_barang (nama, kategori,harga_jual, harga_beli, stok, gambar) ';
+          $sql .= "VALUE ('{$nama}', '{$kategori}','{$harga_jual}', '{$harga_beli}', '{$stok}', '{$gambar}')";
+          $result = mysqli_query($conn, $sql);
+          header('location: index.php');
+      }
       ?>
-      <DOCTYPE html>
+      <!DOCTYPE html>
       <html lang="en">
       <head>
           <meta charset="UTF-8">
-          <link href="style.css" rel="stylesheet" type="text/css" />
-          <title>Data Barang</title>
+          <meta http-equiv="X-UA-Compatible" content="IE=edge">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link href="tambahstyle.css" rel="stylesheet" type="text/css" />
+          <title>Tambah Barang</title>
+      
+          <style>
+              body {
+                  background-color: #FFDCF1;
+              }
+          </style>
       </head>
       <body>
           <div class="container">
-              <h1>Data Barang</h1>
-              <tr>
-                  <a href="tambah.php?id=">Tambah Barang</a>
-              </tr>
-      
-              <div class="main">
-                  <table border="1" cellpadding="5" cellspacing="0">
-                  <tr>
-                      <th>Gambar</th>
-                      <th>Nama Barang</th>
-                      <th>Katagori</th>
-                      <th>Harga Jual</th>
-                      <th>Harga Beli</th>
-                      <th>Stok</th>
-                      <th>Aksi</th>
-                  </tr>
-                  <?php if($result): ?>
-                  <?php while($row = mysqli_fetch_array($result)): ?>
-                  <tr>
-                      <td><?= $row['nama'];?></td>
-                      <td><?= $row['nama'];?></td>
-                      <td><?= $row['kategori'];?></td>
-                      <td><?= $row['harga_beli'];?></td>
-                      <td><?= $row['harga_jual'];?></td>
-                      <td><?= $row['stok'];?></td>
-                      <td>
-                          <a href="ubah.php?id=<?= $row['id_barang'];?>">Ubah</a>
-                          <a href="hapus.php?id=<?= $row['id_barang'];?>">Hapus</a>
-                      </td>
-                  </tr>
-                  <?php endwhile; else: ?>
-                  <tr>
-                      <td colspan="7">Belum ada data</td>
-                  </tr>
-                  <?php endif; ?>
+              <h1><center>Tambah Barang</h1></center>
+          <div class="main">
+              <form method="post" action="tambah.php" enctype="multipart/form-data">
+                  <table border="0" align="center">
+                      <tr>
+                          <div class="input">
+                              <td>Nama Barang</td>
+                              <td>:</td>
+                              <td><input type="text" name="nama" /></td>
+                          </div>
+                      </tr>
+                      <div class="input">
+                          <td>Kategori</td>
+                          <td>:</td>
+                          <td><select name="kategori">
+                              <option value="Komputer">Komputer</option>
+                              <option value="Elektronik">Elektronik</option>
+                              <option value="Hand Phone">Hand Phone</option>
+                              </select>
+                          </td>
+                      </div>
+                      </tr>
+                      <div class="input">
+                          <td>Harga Jual</td>
+                          <td>:</td>
+                          <td><input type="text" name="harga_jual" /></td>
+                      </div>    
+                      </tr>
+                      <div class="input">
+                          <td>Harga Beli</td>
+                          <td>:</td>
+                          <td><input type="text" name="harga_beli" /></td>
+                      </div>  
+                      </tr>
+                      <div class="input">
+                          <td>Stok</td>
+                          <td>:</td>
+                          <td><input type="text" name="stok" /></td>
+                      </div>
+                      </tr>
+                      <div class="input">
+                          <td>File Gambar</td>
+                          <td>:</td>
+                          <td><input type="file" name="file_gambar" /></td>
+                      </div>
+                      </tr>
+                      <div class="submit">
+                          <td><input type="submit" name="submit" value="Simpan" /></td>
+                      </div>
+                      </tr>
                   </table>
-              </div>
+              </form>
+          </div>
           </div>
       </body>
-      </html>
+      </html>      
+      
+![image](https://github.com/roswanda11/lab8web/assets/115516632/5b196782-68c6-4e5f-8fc0-24e79b439206)
 
 ### 5. Mengubah Data <i>(Update)</i>
 

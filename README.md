@@ -94,6 +94,7 @@ dengan mengakses URL: http://localhost/lab8_php_database
 
 - Buka melalui browser untuk menguji koneksi database (untuk menyampilkan pesan koneksi berhasil, <b><i>uncomment</b></i> pada perintah ```echo “koneksi berhasil”;```
 
+<img width="960" alt="1" src="https://github.com/roswanda11/lab8web/assets/115516632/aae00753-19d4-4be1-a308-9b1e459c7934">
 
 ### 3. Membuat file index untuk menampilkan data <i>(Read)</i>
   

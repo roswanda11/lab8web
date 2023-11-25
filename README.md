@@ -34,6 +34,8 @@ Pastikan webserver Apache dan MySQL server sudah dijalankan. Kemudian buka melal
 
 Dengan menggunakan tabel seseorang dapat dengan mudah mengetahui berbagai perubahan (menaik atau menurun) yang telah berlangsung dalam suatu masalah.
 
+![Screenshot (530)](https://github.com/roswanda11/lab8web/assets/115516632/da4bd504-f2ee-4488-9af5-adc89a571124)
+
 ### 1. Membuat Database
 
         CREATE DATABASE latihan1;
@@ -179,7 +181,7 @@ dengan mengakses URL: http://localhost/lab8_php_database
           background:#FFF;
       }
        
-![image](https://github.com/roswanda11/lab8web/assets/115516632/4efd794b-d2df-4607-9d9f-094057af1a63)
+![image](https://github.com/roswanda11/lab8web/assets/115516632/8f99606e-c04a-469b-b318-9877b4be39b7)
 
 ### 4. Menambah Data <i>(Create)</i>
 
@@ -350,6 +352,13 @@ Dengan penggunaan ```include_once()``` atau ```require_once()``` maka berarti pe
       	<meta charset="UTF-8">
       	<link href="style.css" rel="stylesheet" type="text/css" />
       	<title>Ubah Barang</title>
+      
+        <style>
+              body {
+                  background-color: #FFDCF1;
+              }
+          </style>
+      
       </head>
       <body>
       <div class="container">
@@ -402,6 +411,8 @@ Dengan penggunaan ```include_once()``` atau ```require_once()``` maka berarti pe
       </div>
       </body>
       </html>
+
+![image](https://github.com/roswanda11/lab8web/assets/115516632/de1ee058-1064-422f-b179-f9bbdc921b09)
 
 ### 6. Menghapus Data <i>(Delete)</i>
 
